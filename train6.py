@@ -11,7 +11,7 @@ from keras.callbacks import TensorBoard, ModelCheckpoint, ReduceLROnPlateau, Ear
 
 from yolo3.model import preprocess_true_boxes, yolo_body, tiny_yolo_body, yolo_loss
 from yolo3.utils import get_random_data
-
+from keras.utils import plot_model
 
 def _main():
     annotation_path = 'train_newdataset1.csv'
@@ -53,7 +53,9 @@ def _main():
         model.compile(optimizer=Adam(lr=1e-2), loss={
             # use custom yolo_loss Lambda layer.
             'yolo_loss': lambda y_true, y_pred: y_pred})
-
+        
+        plot_model(model, to_file='YOLOv3_Net.png', show_shapes=True, show_layer_names=True)
+        
         batch_size = 32
         print('Train on {} samples, val on {} samples, with batch size {}.'.format(num_train, num_val, batch_size))
         model.fit_generator(data_generator_wrapper(lines[:num_train], batch_size, input_shape, anchors, num_classes),

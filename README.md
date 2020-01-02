@@ -3,8 +3,15 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
 ## Introduction
-
 A Keras implementation of YOLOv3 (Tensorflow backend) inspired by [allanzelener/YAD2K](https://github.com/allanzelener/YAD2K).
+forked from qqwweee
+
+
+## TEST Image
+python3 yolo_video.py --model trained_weights_final.h5 --image
+
+
+
 
 
 ---

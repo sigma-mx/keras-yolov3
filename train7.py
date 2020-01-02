@@ -14,7 +14,7 @@ from yolo3.utils import get_random_data
 from keras.utils import plot_model
 
 def _main():
-    annotation_path = 'train_newdataset2.csv'
+    annotation_path = 'train_labels.csv'
     log_dir = 'logs/000/'
     classes_path = 'model_data/my_classes.txt'
     anchors_path = 'model_data/tiny_yolo_anchors.txt'
@@ -62,7 +62,7 @@ def _main():
                 steps_per_epoch=max(1, num_train//batch_size),
                 validation_data=data_generator_wrapper(lines[num_train:], batch_size, input_shape, anchors, num_classes),
                 validation_steps=max(1, num_val//batch_size),
-                epochs=15,
+                epochs=5,
                 initial_epoch=0,
                 callbacks=[logging, checkpoint])
         model.save_weights(log_dir + 'trained_weights_stage_1.h5')
@@ -81,8 +81,8 @@ def _main():
             steps_per_epoch=max(1, num_train//batch_size),
             validation_data=data_generator_wrapper(lines[num_train:], batch_size, input_shape, anchors, num_classes),
             validation_steps=max(1, num_val//batch_size),
-            epochs=30,
-            initial_epoch=15,
+            epochs=10,
+            initial_epoch=5,
             callbacks=[logging, checkpoint, reduce_lr, early_stopping])
         model.save_weights(log_dir + 'trained_weights_final.h5')
 
