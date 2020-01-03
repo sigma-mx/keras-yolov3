@@ -15,4 +15,5 @@ train4_2.py  -> train4.py + edit(.cfg)
 
 train7.py  -> Final_Dataset(5884) edit(.cfg) epoch(20)(20) lr(1e-2)(1e-3) data(2664+3000+220)
 
+train7_2.py  -> train7 config with tiny-drone pretrain dataset not tiny-yolo
 
